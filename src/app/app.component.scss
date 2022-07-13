@@ -18,3 +18,7 @@
     color: #000;
     font-size: 30px;
 }
+
+:host ::ng-deep .container{
+    min-width:100% !important;
+}
