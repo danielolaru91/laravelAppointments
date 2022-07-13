@@ -1,0 +1,46 @@
+<div class="content-header">
+    <div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+        <h1 class="m-0">Categories</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink="/">Dashboard</a></li>
+            <li class="breadcrumb-item"><a routerLink="/categories">Categories</a></li>
+            <li class="breadcrumb-item active">Update</li>
+        </ol>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="col-md-12 mt-2">
+    
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+    <div class="card">
+        <h4 class="card-header">Update Category</h4>
+        <div class="card-body">
+            <div *ngIf="loading" class="loadingOverlay"><i class="fas fa-spinner fa-spin"></i></div>
+            <ng-container *ngIf="!loading">
+            <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">This field is mandatory</div>
+                    </div>
+                </div>
+
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Update
+                </button>
+ 
+            </form>
+            </ng-container>
+        </div>
+    </div>
+</div>

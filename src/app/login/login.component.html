@@ -1,0 +1,97 @@
+﻿<div class="col-md-6 offset-md-3 mt-5">
+    <div class="card">
+        <h4 class="card-header">AS Styling Studio</h4>
+        <div class="card-body">
+
+            <form *ngIf="!this.params['forgot-password'] || this.params['forgot-password'] != 'true'" [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
+                
+                <div *ngIf="response" class="alert mt-3 mb-0" [ngClass]="{'alert-danger': response.type == 'error', 'alert-success': response.type =='success'}">{{response.message}}</div>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+                <br>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">This field is mandatory</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Parola</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">This field is mandatory</div>
+                    </div>
+                </div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+
+                <a style="display:block; margin-top:20px;" href="/login?forgot-password=true">Forgot Password!</a>
+                <a style="display:block; margin-top:20px;" href="/register">Register!</a>
+
+            </form>
+
+            <form *ngIf="this.params['forgot-password'] == 'true' && !this.params['token']" [formGroup]="forgotPasswordForm" (ngSubmit)="onSubmitForgotPassword()">
+                                
+                <div *ngIf="response" class="alert mt-3 mb-0" [ngClass]="{'alert-danger': response.type == 'error', 'alert-success': response.type =='success'}">{{response.message}}</div>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+                <br>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email" email class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">This field is mandatory</div>
+                        <div *ngIf="f.email.errors.email">Email address is not valid</div>
+                    </div>
+                </div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Send Email
+                </button>
+
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+                <a style="display:block; margin-top:20px;" href="/login">Inapoi la login</a>
+
+            </form>
+
+            <form *ngIf="this.params['forgot-password'] == 'true' && this.params['token']" [formGroup]="resetPasswordForm" (ngSubmit)="onSubmitResetPassword()">
+                                
+                <div *ngIf="response" class="alert mt-3 mb-0" [ngClass]="{'alert-danger': response.type == 'error', 'alert-success': response.type =='success'}">{{response.message}}</div>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+                <br>
+                
+                <div class="form-group">
+                    <label for="password">Parola Noua</label>
+                    <input type="password" formControlName="newpassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.newpassword.errors }" />
+                    <div *ngIf="submitted && f.newpassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.newpassword.errors.required">This field is mandatory</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Repeta Parola Noua</label>
+                    <input type="password" formControlName="repeatpassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.repeatpassword.errors }" />
+                    <div *ngIf="submitted && f.repeatpassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.repeatpassword.errors.required">This field is mandatory</div>
+                    </div>
+                </div>
+                <button [disabled]="loading || error == 'Invalid Token' " class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Reset Password
+                </button>
+                
+                <a style="display:block; margin-top:20px;" href="/login">Inapoi la login</a>
+
+            </form>
+
+            
+
+        </div>
+    </div>
+</div>

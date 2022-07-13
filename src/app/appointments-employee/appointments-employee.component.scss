@@ -1,0 +1,15 @@
+:host ::ng-deep div.loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;  
+    z-index: 9999;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+:host ::ng-deep .animation__shake{
+    Animation: shake 1.5s;
+  }

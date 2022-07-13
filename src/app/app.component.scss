@@ -1,0 +1,20 @@
+:host ::ng-deep .loadingOverlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: block;
+    position: absolute;
+    top: 0;
+    left:0;
+    bottom: 0;
+}
+
+:host ::ng-deep .loadingOverlay .fa-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+    color: #000;
+    font-size: 30px;
+}
